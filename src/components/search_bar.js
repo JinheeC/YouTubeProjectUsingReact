@@ -8,12 +8,29 @@ import React, {Component} from 'react';  //Syntatic sugar
 // 클래스 기반 컴포넌트
 // 상속도 가능. React.Component class 의 기능을 상속받겠다는 말
 class SearchBar extends Component{
+  constructor(props){
+    super(props); // 상위클래스 호출
+
+    // 클래스기반 컴포넌트마다 state 가 존재한다. 여기서는 그 state 를 다른 값으로 초기화 했다.
+    // 초기화는 this.state = , 값을 바꾸려면 this.setState() 메소드를 사용하면 된다.
+    // this.state.term 은 값을 참조할 때나 사용해야 한다. setState() 로 상태가 바뀌는 것을 리엑트에게 알려주자.
+    this.state = {term: ''};
+  }
+
 // render 이라는 메소드
 // SearchBar 를 랜더링 할때 이제 기존의 render 를 사용하지 않고 아래의 render를 사용하게 된다.
   render() {
-    //ES6 방식으로 아래처럼도 가능.
     //return <input onChange={event => console.log(event.target.value)}/>;
-    return <input onChange={this.onInputChange}/>;
+    //ES6 방식으로 아래처럼도 가능.
+    //return <input onChange={this.onInputChange}/>;
+    // JSX 에서는 값을 참조할때 {} 를 사용한다.
+    return (
+      <div>
+        <input onChange={event => this.setState({term: event.target.value})}/>
+        <br/>
+        입력된 값: {this.state.term}
+      </div>
+    );
   }
 
   // 일반적으로 on, handle 을 쓰고 보고싶은 컴포넌트 이름, 그리고 어떤 이벤트에 반응할것인지 순서로 이름을 지어준다.
