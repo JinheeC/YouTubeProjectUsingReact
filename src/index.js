@@ -1,9 +1,14 @@
 import React from 'react'; // 설치한 npm 파일에서 react 를 가져와.
 import ReactDom from 'react-dom';
-
+import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar'; // babel이 해당 파일의 서치바를 가져온다.
-
 const API_KEY = '';
+
+// 두번째 인자인 function 은 콜백이다.
+YTSearch({key: API_KEY, term: 'surfboards'}, function(data) {
+  console.log(data);
+})
+
 // 새 컴포넌트를 만들고 이 컴포넌트는 HTML 파일로 만들어 줘.
 // const App = function () { ~ 과 아래는 같은 코드이다.
 const App = () => { // class 형태에 해당된다.

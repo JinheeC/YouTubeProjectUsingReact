@@ -26,7 +26,12 @@ class SearchBar extends Component{
     // JSX 에서는 값을 참조할때 {} 를 사용한다.
     return (
       <div>
-        <input onChange={event => this.setState({term: event.target.value})}/>
+        <input
+          value={this.state.term} // 이 줄을 추가하면 완전 반대 방향이 된다. 이게 없으면 input 폼의 값이 setState로 State를 변경했지만
+          // value 로 인해서 상태가 input 즉 제어 폼 요소한테 너의 값은 내 상태에 달려있어. 내 값을 랜더링 해. 의미가 되어버림.
+          // 유저가 input에 값을 입력하면 input 폼의 값이 변하는게 아니라 상태가 변하는 것이다!!
+          // react 가 데이터를 다루는 방식.
+          onChange={event => this.setState({term: event.target.value})}/>
         <br/>
         입력된 값: {this.state.term}
       </div>
