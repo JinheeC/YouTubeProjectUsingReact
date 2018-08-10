@@ -7,20 +7,20 @@ class SearchBar extends Component{
     this.state = {term: ''};
   }
 
+// className을 클래스 이름이랑 일치하게 하면 좋다.
   render() {
     return (
-      <div>
+      <div className="search-bar">
         <input
           value={this.state.term}
-          onChange={event => this.setState({term: event.target.value})}/>
-        <br/>
-        입력된 값: {this.state.term}
+          onChange={event => this.onInputChange(event.target.value)} />
       </div>
     );
   }
 
-  onInputChange(event) {
-    console.log(event.target.value);
+  onInputChange(term) {
+    this.setState({term: term});
+    this.props.onSearchTermChange(term);
   }
 }
 
